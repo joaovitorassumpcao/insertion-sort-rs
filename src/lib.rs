@@ -1,5 +1,7 @@
 use std::{fs::{OpenOptions}};
 
+use clap::ArgMatches;
+
 pub fn insertion_sort(array: &mut Vec<i32>) -> Vec<i32> {
     for i in 1..array.len() {
         let mut j = i;
@@ -9,6 +11,22 @@ pub fn insertion_sort(array: &mut Vec<i32>) -> Vec<i32> {
         }
     }
     array.to_vec()
+}
+
+pub fn arg_list(cmd: &ArgMatches) {
+    let mut nums: Vec<i32> = cmd
+            .get_many::<String>("list")
+            .expect("contains_id")
+            .map(|x| x.parse::<i32>().expect("error parsing to i32"))
+            .collect();
+
+        let sorted_nums = insertion_sort(&mut nums);
+        print!("Sorted: ");
+        for i in 0..sorted_nums.len() {
+            print!("{} ", sorted_nums[i]);
+        }
+        println!(" ");
+    }
 }
 
 pub fn sort_file(file_path: &str){

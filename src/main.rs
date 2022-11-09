@@ -18,17 +18,6 @@ fn main() {
 
     //for ARRAY
     if let Some(list) = cmd.get_one::<String>("list") {
-        let mut nums: Vec<i32> = cmd
-            .get_many::<String>("list")
-            .expect("contains_id")
-            .map(|x| x.parse::<i32>().expect("error parsing to i32"))
-            .collect();
-
-        let sorted_nums = insertion_sort(&mut nums);
-        print!("Sorted: ");
-        for i in 0..sorted_nums.len() {
-            print!("{} ", sorted_nums[i]);
-        }
-        println!(" ");
-    }
+		arg_list(&cmd);
+	}
 }
