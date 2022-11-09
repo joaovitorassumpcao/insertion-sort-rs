@@ -1,6 +1,6 @@
 use std::{fs::{OpenOptions}};
 
-pub fn insertion_sort(array: &mut Vec<usize>) -> Vec<usize> {
+pub fn insertion_sort(array: &mut Vec<i32>) -> Vec<i32> {
     for i in 1..array.len() {
         let mut j = i;
         while j > 0 && array[j - 1] > array[j] {
