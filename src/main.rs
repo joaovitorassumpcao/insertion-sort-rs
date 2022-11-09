@@ -42,7 +42,7 @@ fn main() {
                 for i in 0..sorted_nums.len(){
                     print!("{} ", sorted_nums[i]);
                 }
-                return;
+                println!(" ");
             }
         },
         Some((&_,_)) => panic!("Invaid argument!"),
