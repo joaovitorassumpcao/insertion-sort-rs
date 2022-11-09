@@ -5,12 +5,11 @@ Insertion sort with Rust.
 
 # Usage
 ```
-Usage: insertion-sort <COMMAND>
+Insertion sort on the command line.
 
-Commands:
-  typed, -T, --typed  Manually typed values to be sorted.
-  help                Print this message or the help of the given subcommand(s)
+Usage: insertion-sort [OPTIONS]
 
 Options:
-  -h, --help  Print help information
+  -l, --list <list>...  Manually typed values separated by spaces, e.g 9 3 2 7 4 
+  -h, --help            Print help information
 ```
