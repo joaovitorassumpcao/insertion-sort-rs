@@ -26,8 +26,8 @@ pub fn arg_list(cmd: &ArgMatches) {
             print!("{} ", sorted_nums[i]);
         }
         println!(" ");
-    }
 }
+
 
 pub fn sort_file(file_path: &str){
 	let file = OpenOptions::new()
