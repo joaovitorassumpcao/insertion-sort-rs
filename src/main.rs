@@ -1,4 +1,4 @@
-use clap::{Arg, ArgAction, Command};
+use clap::{Arg, ArgAction, Command, builder::ValueParser};
 use insertion_sort_rs::*;
 
 fn main() {
@@ -14,6 +14,16 @@ fn main() {
                 .help("Manually typed values separated by spaces, e.g 9 3 2 7 4 ")
                 .action(ArgAction::Set)
                 .num_args(1..),
+        )
+        .arg(
+            Arg::new("file")
+                .short('f')
+                .long("file-path")
+                .conflicts_with("list")
+                .help("Path to the file in which the contents will be sorted")
+                .action(ArgAction::Set)
+                .num_args(1)
+                .value_parser(ValueParser::path_buf())
         )
         .get_matches();
 

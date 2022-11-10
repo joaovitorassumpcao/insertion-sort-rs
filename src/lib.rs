@@ -1,4 +1,4 @@
-use std::{fs::{OpenOptions}};
+use std::{fs::{OpenOptions}, path::PathBuf};
 
 use clap::ArgMatches;
 
@@ -29,13 +29,13 @@ pub fn arg_list(cmd: &ArgMatches) {
 }
 
 
-pub fn sort_file(file_path: &str){
+pub fn sort_file(file_path: &PathBuf){
 	let file = OpenOptions::new()
         .read(true)
         .write(true)
         .create(true)
         .open(file_path);
-	
+	todo!()
 }
 
 #[test]
