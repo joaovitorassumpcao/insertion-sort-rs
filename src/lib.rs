@@ -27,7 +27,7 @@ pub fn arg_list(cmd: &ArgMatches) -> Vec<i32> {
     insertion_sort(&mut nums)
 }
 
-pub fn sort_file(cmd: &ArgMatches) -> Vec<i32> {
+pub fn arg_file(cmd: &ArgMatches) -> Vec<i32> {
     let path: PathBuf = cmd
         .get_one::<String>("file")
         .expect("get path")
@@ -39,11 +39,11 @@ pub fn sort_file(cmd: &ArgMatches) -> Vec<i32> {
     match BufReader::new(file).lines().last() {
         Some(Ok(line)) => {
             let mut vec: Vec<i32> = line
-                .split(" ")
+                .split(' ')
                 .map(|x| x.parse::<i32>().expect("parse file to i32."))
                 .collect();
-            
-            return insertion_sort(&mut vec);
+
+            insertion_sort(&mut vec)
         },
         Some(Err(err)) => panic!("{}", err),
         None => panic!("No line Found!"),

@@ -1,4 +1,4 @@
-use clap::{builder::ValueParser, Arg, ArgAction, Command};
+use clap::{Arg, ArgAction, Command};
 use insertion_sort_rs::*;
 
 fn main() {
@@ -23,21 +23,21 @@ fn main() {
                 .help("Path to the file in which the contents will be sorted")
                 .action(ArgAction::Set)
                 .num_args(1)
-                .value_parser(ValueParser::path_buf()),
         )
         .get_matches();
 
     //for ARRAY
-    if let Some(_) = cmd.get_one::<String>("list") {
+    if cmd.get_one::<String>("list").is_some() {
         let sorted_nums = arg_list(&cmd);
         print!("Sorted: ");
-        for i in 0..sorted_nums.len() {
-            print!("{} ", sorted_nums[i]);
-        }
+        sorted_nums.iter().for_each(|x| print!(" {}", x));
         println!(" ");
     }
 
-    if let Some(_) = cmd.get_one::<String>("file") {
-        todo!()
+    if cmd.get_one::<String>("file").is_some() {
+        let sorted_nums = arg_file(&cmd);
+        print!("Sorted: ");
+        sorted_nums.iter().for_each(|x| print!(" {}", x));
+        println!(" ");
     }
 }
