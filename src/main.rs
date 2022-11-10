@@ -29,6 +29,15 @@ fn main() {
 
     //for ARRAY
     if let Some(_) = cmd.get_one::<String>("list") {
-		arg_list(&cmd);
+        let sorted_nums = arg_list(&cmd);
+        print!("Sorted: ");
+        for i in 0..sorted_nums.len() {
+            print!("{} ", sorted_nums[i]);
+        }
+        println!(" ");
+    }
+
+    if let Some(_) = cmd.get_one::<String>("file") {
+        todo!()
 	}
 }
