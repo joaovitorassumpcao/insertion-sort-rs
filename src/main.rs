@@ -1,4 +1,4 @@
-use clap::{Arg, ArgAction, Command, builder::ValueParser};
+use clap::{builder::ValueParser, Arg, ArgAction, Command};
 use insertion_sort_rs::*;
 
 fn main() {
@@ -23,7 +23,7 @@ fn main() {
                 .help("Path to the file in which the contents will be sorted")
                 .action(ArgAction::Set)
                 .num_args(1)
-                .value_parser(ValueParser::path_buf())
+                .value_parser(ValueParser::path_buf()),
         )
         .get_matches();
 
@@ -39,5 +39,5 @@ fn main() {
 
     if let Some(_) = cmd.get_one::<String>("file") {
         todo!()
-	}
+    }
 }
