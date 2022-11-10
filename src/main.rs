@@ -10,6 +10,7 @@ fn main() {
             Arg::new("list")
                 .short('l')
                 .long("list")
+                .conflicts_with("file")
                 .help("Manually typed values separated by spaces, e.g 9 3 2 7 4 ")
                 .action(ArgAction::Set)
                 .num_args(1..),
@@ -17,7 +18,7 @@ fn main() {
         .get_matches();
 
     //for ARRAY
-    if let Some(list) = cmd.get_one::<String>("list") {
+    if let Some(_) = cmd.get_one::<String>("list") {
 		arg_list(&cmd);
 	}
 }
