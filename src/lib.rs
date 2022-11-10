@@ -1,4 +1,8 @@
-use std::{fs::{OpenOptions}};
+use std::{
+    fs::File,
+    io::{BufRead, BufReader},
+    path::PathBuf,
+};
 
 use clap::ArgMatches;
 
@@ -13,29 +17,37 @@ pub fn insertion_sort(array: &mut Vec<i32>) -> Vec<i32> {
     array.to_vec()
 }
 
-pub fn arg_list(cmd: &ArgMatches) {
+pub fn arg_list(cmd: &ArgMatches) -> Vec<i32> {
     let mut nums: Vec<i32> = cmd
-            .get_many::<String>("list")
-            .expect("contains_id")
-            .map(|x| x.parse::<i32>().expect("error parsing to i32"))
-            .collect();
+        .get_many::<String>("list")
+        .expect("get nums")
+        .map(|x| x.parse::<i32>().expect("error parsing to i32"))
+        .collect();
 
-        let sorted_nums = insertion_sort(&mut nums);
-        print!("Sorted: ");
-        for i in 0..sorted_nums.len() {
-            print!("{} ", sorted_nums[i]);
-        }
-        println!(" ");
+    insertion_sort(&mut nums)
 }
 
+pub fn arg_file(cmd: &ArgMatches) -> Vec<i32> {
+    let path: PathBuf = cmd
+        .get_one::<String>("file")
+        .expect("get path")
+        .parse::<PathBuf>()
+        .expect("parse");
 
-pub fn sort_file(file_path: &str){
-	let file = OpenOptions::new()
-        .read(true)
-        .write(true)
-        .create(true)
-        .open(file_path);
-	unimplemented!("sort_file");
+    let file = File::open(path).expect("open file");
+
+    match BufReader::new(file).lines().last() {
+        Some(Ok(line)) => {
+            let mut vec: Vec<i32> = line
+                .split(' ')
+                .map(|x| x.parse::<i32>().expect("parse file to i32."))
+                .collect();
+
+            insertion_sort(&mut vec)
+        },
+        Some(Err(err)) => panic!("{}", err),
+        None => panic!("No line Found!"),
+    }
 }
 
 #[test]
