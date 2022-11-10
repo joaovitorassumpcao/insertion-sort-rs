@@ -1,7 +1,7 @@
 # insertion-sort-rs
 Insertion sort with Rust.
 
-*Time complexity:*  $\mathcal{O}(n^2)$
+$\mathcal{O}(n^2)$
 
 # Usage
 ```
