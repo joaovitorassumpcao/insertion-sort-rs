@@ -1,7 +1,20 @@
-# insertion-sort-rs
-Insertion sort with Rust.
-
-$\mathcal{O}(n^2)$
+# Insertion Sort  $\mathcal{O}(n^2)$
+### Insertion sort with Rust.  
+*Tecnically this isn't **true** insertion sorting as it doesn't create a new array with the sorted values, so don't tell anyone.*
+  
+# Implementation  
+```
+insertion_sort(array: &mut Vec<i32>) -> Vec<i32> {
+    for i in 1..array.len() {
+        let mut j = i;
+        while j > 0 && array[j - 1] > array[j] {
+            array.swap(j - 1, j);
+            j -= 1;
+        }
+    }
+    array.to_vec()
+}
+```
 
 # Usage
 ```
